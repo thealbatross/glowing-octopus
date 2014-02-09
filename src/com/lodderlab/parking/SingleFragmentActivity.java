@@ -1,4 +1,4 @@
-package com.lodderlab.parking;;
+package com.lodderlab.parking;
 
 
 import android.os.Bundle;
