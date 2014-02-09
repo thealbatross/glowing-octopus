@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.lodderlab.parking;
+package com.bignerdranch.android.runtracker;
 
 public final class R {
     public static final class attr {
