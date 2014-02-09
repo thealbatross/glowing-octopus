@@ -1,4 +1,4 @@
-package com.bignerdranch.android.runtracker;
+package com.lodderlab.parking;
 
 import android.app.PendingIntent;
 import android.content.Context;

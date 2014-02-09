@@ -1,4 +1,4 @@
-package com.bignerdranch.android.runtracker;
+package com.lodderlab.parking;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

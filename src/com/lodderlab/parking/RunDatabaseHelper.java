@@ -1,4 +1,4 @@
-package com.bignerdranch.android.runtracker;
+package com.lodderlab.parking;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
