@@ -14,9 +14,9 @@ import android.os.Build;
 public class MainActivity extends SingleFragmentActivity {
 
     @Override
-    protected Fragment createFragment()
+    protected Fragment createFragment() 
     {
-        return new RunFragment();
+        return new Fragment(); //Changed from RunFragment(); to solve a problem
     }
 
     @Override

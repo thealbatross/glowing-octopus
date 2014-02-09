@@ -17,7 +17,7 @@ public class RunManager {
     private static final String PREFS_FILE = "runs";
     private static final String PREF_CURRENT_RUN_ID = "RunManager.currentRunId";
 
-    public static final String ACTION_LOCATION = "com.bignerdranch.android.runtracker.ACTION_LOCATION";
+    public static final String ACTION_LOCATION = "com.lodderlab.parking.ACTION_LOCATION";
 
     private static RunManager sRunManager;
     private Context mAppContext;
