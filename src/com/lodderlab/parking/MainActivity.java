@@ -1,4 +1,4 @@
-package com.bignerdranch.android.runtracker;
+package com.lodderlab.parking;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
