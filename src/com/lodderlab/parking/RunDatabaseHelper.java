@@ -1,6 +1,8 @@
 package com.lodderlab.parking;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
@@ -16,7 +18,7 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_RUN = "run";
     private static final String COLUMN_RUN_START_DATE = "start_date";
-
+    private static final String COLUMN_RUN_ID = "_id" ;
     private static final String TABLE_LOCATION = "location";
     private static final String COLUMN_LOCATION_LATITUDE = "latitude";
     private static final String COLUMN_LOCATION_LONGITUDE = "longitude";
@@ -25,6 +27,32 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_LOCATION_PROVIDER = "provider";
     private static final String COLUMN_LOCATION_RUN_ID = "run_id";
 
+    public RunCursor queryRuns()
+    {
+    	Cursor wrapped = getReadableDatabase().query(TABLE_RUN, null, null, null, null, null, COLUMN_RUN_START_DATE + " asc");
+    	return new RunCursor(wrapped);
+    }
+    
+    public static class RunCursor extends CursorWrapper {
+    	public RunCursor(Cursor c)
+    	{
+    		super(c);
+    	}
+    	
+    	public Run getRun()
+    	{
+    		if (isBeforeFirst() || isAfterLast())
+    		{
+    			return null;
+    		}
+    		Run run = new Run();
+    		long runId = getLong(getColumnIndex(COLUMN_RUN_ID));
+    		run.setId(runId);
+    		long startDate = getLong(getColumnIndex(COLUMN_RUN_START_DATE));
+    		run.setStartDate(new Date(startDate));
+    		return run; 
+    	}
+    }
     public long insertLocation(long runId, Location location){
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_LOCATION_LATITUDE, location.getLatitude());

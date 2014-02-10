@@ -1,5 +1,7 @@
 package com.lodderlab.parking;
 
+import com.lodderlab.parking.RunDatabaseHelper.RunCursor;
+
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +36,11 @@ public class RunManager {
         mCurrentRunId = mPrefs.getLong(PREF_CURRENT_RUN_ID, -1);
     }
 
+    public RunCursor queryRuns()
+    {
+    	return mHelper.queryRuns();
+    }
+    
     public Run startNewRun()
     {
         Run run = insertRun();
