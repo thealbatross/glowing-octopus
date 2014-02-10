@@ -10,10 +10,12 @@ import android.widget.FrameLayout;
 public abstract class SingleFragmentActivity extends FragmentActivity {
     protected static final String FRAGMENT_TAG = "SingleFragmentActivity.Fragment";
     
+    //Class abstraction, causes conflict with MainActivity.java...
+    //Changed Fragment -> RunFragment so as to resolve that.
     protected abstract Fragment createFragment();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //Used to be public, caused conflict with MainActivity.java
         super.onCreate(savedInstanceState);
         FrameLayout fl = new FrameLayout(this);
         fl.setId(R.id.fragmentContainer);

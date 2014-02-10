@@ -3,6 +3,7 @@ package com.lodderlab.parking;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,13 +13,28 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 public class MainActivity extends SingleFragmentActivity {
-
+	public static final String EXTRA_RUN_ID = "com.lodderlab.parking.ACTION_LOCATION";
+	
     @Override
-    protected Fragment createFragment()
+    protected Fragment createFragment() 
     {
-        return new RunFragment();
+    	long runId = getIntent().getLongExtra(EXTRA_RUN_ID, -1);
+    	if (runId != -1){
+    		return RunFragment.newInstances(runId);
+    	}
+    	else {
+    		 return new RunFragment(); //Changed from RunFragment(); to solve a problem
+    	}       
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id){
+    	// the id argument will be the Run ID; CursorAdapter gives us this for free
+    	Intent i = new Intent(getActivity(), MainActivity.class);
+    	i.putExtra(MainActivity.EXTRA_RUN_ID, id);
+    	startActivity(i); 
+    }
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

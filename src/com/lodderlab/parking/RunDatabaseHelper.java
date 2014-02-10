@@ -33,6 +33,16 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     	return new RunCursor(wrapped);
     }
     
+    public RunCursor queryRun(long id){
+    	Cursor wrapped = getReadableDatabase().query(TABLE_RUN, null, COLUMN_RUN_ID + " =?", new String[]{String.valueOf(id)}, null, null, null, "-1");
+    	return new RunCursor(wrapped);
+    }
+    
+    public LocationCursor queryLastLocationForRun(long runId){
+    	Cursor wrapped = getReadableDatabase().query(TABLE_LOCATION, null, COLUMN_LOCATION_RUN_ID + "= ?", new String[]{String.valueOf(runId)}, null, null, COLUMN_LOCATION_TIMESTAMP + " desc", "1");
+    return new LocationCursor(wrapped);
+    }
+    
     public static class RunCursor extends CursorWrapper {
     	public RunCursor(Cursor c)
     	{
@@ -51,6 +61,27 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     		long startDate = getLong(getColumnIndex(COLUMN_RUN_START_DATE));
     		run.setStartDate(new Date(startDate));
     		return run; 
+    	}
+    }
+    
+    public static class LocationCursor extends CursorWrapper{
+    	
+    	public LocationCursor(Cursor c){
+    		super(c);
+    	}
+    	
+    	public Location getLocation(){
+    		if (isBeforeFirst() || isAfterLast())
+    			return null;
+    		// get the provider so that you can use the constructor
+    		String provider = getString(getColumnIndex(COLUMN_LOCATION_PROVIDER));
+    		Location loc = new Location(provider);
+    		// populate the remaining properties
+    		loc.setLongitude(getDouble(getColumnIndex(COLUMN_LOCATION_LONGITUDE)));
+    		loc.setLatitude(getDouble(getColumnIndex(COLUMN_LOCATION_LATITUDE)));
+    		loc.setAltitude(getDouble(getColumnIndex(COLUMN_LOCATION_ALTITUDE)));
+    		loc.setTime(getLong(getColumnIndex(COLUMN_LOCATION_TIMESTAMP)));
+    		return loc;
     	}
     }
     public long insertLocation(long runId, Location location){

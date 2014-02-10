@@ -1,5 +1,6 @@
 package com.lodderlab.parking;
 
+import com.lodderlab.parking.RunDatabaseHelper.LocationCursor;
 import com.lodderlab.parking.RunDatabaseHelper.RunCursor;
 
 import android.app.PendingIntent;
@@ -19,7 +20,7 @@ public class RunManager {
     private static final String PREFS_FILE = "runs";
     private static final String PREF_CURRENT_RUN_ID = "RunManager.currentRunId";
 
-    public static final String ACTION_LOCATION = "com.bignerdranch.android.runtracker.ACTION_LOCATION";
+    public static final String ACTION_LOCATION = "com.lodderlab.parking.ACTION_LOCATION";
 
     private static RunManager sRunManager;
     private Context mAppContext;
@@ -36,6 +37,28 @@ public class RunManager {
         mCurrentRunId = mPrefs.getLong(PREF_CURRENT_RUN_ID, -1);
     }
 
+    public Run getRun(long id){
+    	Run run = null; 
+    	RunCursor cursor = mHelper.queryRun(id);
+    	cursor.moveToFirst();
+    	// if you got a row, get a run
+    	if (!cursor.isAfterLast())
+    		run = cursor.getRun();
+    	cursor.close();
+    	return run;
+    }
+    
+    public Location getLastLocationForRun(long runId){
+    	Location location = null;
+    	LocationCursor cursor = mHelper.queryLastLocationForRun(runId);
+    	cursor.moveToFirst();
+    	// if you got a row, get a location
+    	if (!cursor.isAfterLast())
+    		location = cursor.getLocation();
+    	cursor.close();
+    	return location;
+    }
+    
     public RunCursor queryRuns()
     {
     	return mHelper.queryRuns();
