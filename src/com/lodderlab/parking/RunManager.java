@@ -71,6 +71,10 @@ public class RunManager {
         return run;
     }
 
+    public LocationCursor queryLocationsForRun(long runId){
+    	return mHelper.queryLocationForRun(runId);
+    }
+    
     public void startTrackingRun(Run run)
     {
         mCurrentRunId = run.getId();

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.location.Location;
 
+// fix the Date problem
 /**
  * Created by Joshua on 2/5/14.
  */
@@ -23,7 +24,7 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_LOCATION_LATITUDE = "latitude";
     private static final String COLUMN_LOCATION_LONGITUDE = "longitude";
     private static final String COLUMN_LOCATION_ALTITUDE = "altitude";
-    private static final String COLUMN_LOCATION_TIMESTRAP = "timestamp";
+    private static final String COLUMN_LOCATION_TIMESTAMP = "timestamp";
     private static final String COLUMN_LOCATION_PROVIDER = "provider";
     private static final String COLUMN_LOCATION_RUN_ID = "run_id";
 
@@ -39,6 +40,11 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     }
     
     public LocationCursor queryLastLocationForRun(long runId){
+    	Cursor wrapped = getReadableDatabase().query(TABLE_LOCATION, null, COLUMN_LOCATION_RUN_ID + "= ?", new String[]{String.valueOf(runId)}, null, null, COLUMN_LOCATION_TIMESTAMP + " desc", "1");
+    return new LocationCursor(wrapped);
+    }
+    
+    public LocationCursor queryLocationForRun(long runId){
     	Cursor wrapped = getReadableDatabase().query(TABLE_LOCATION, null, COLUMN_LOCATION_RUN_ID + "= ?", new String[]{String.valueOf(runId)}, null, null, COLUMN_LOCATION_TIMESTAMP + " desc", "1");
     return new LocationCursor(wrapped);
     }
@@ -89,7 +95,7 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_LOCATION_LATITUDE, location.getLatitude());
         cv.put(COLUMN_LOCATION_LONGITUDE, location.getLongitude());
         cv.put(COLUMN_LOCATION_ALTITUDE, location.getAltitude());
-        cv.put(COLUMN_LOCATION_TIMESTRAP, location.getTime());
+        cv.put(COLUMN_LOCATION_TIMESTAMP, location.getTime());
         cv.put(COLUMN_LOCATION_PROVIDER, location.getProvider());
         cv.put(COLUMN_LOCATION_RUN_ID, runId);
         return getWritableDatabase().insert(TABLE_LOCATION, null, cv);
