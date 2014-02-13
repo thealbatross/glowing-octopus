@@ -56,7 +56,7 @@ public final class R {
         public static final int longitude=0x7f050003;
         public static final int map=0x7f05000d;
         public static final int new_run=0x7f05000b;
-        public static final int run_finished=0x7f050010;
+        public static final int run_finish=0x7f050010;
         public static final int run_finished_at_format=0x7f050011;
         public static final int run_start=0x7f05000e;
         public static final int run_started_at_format=0x7f05000f;
