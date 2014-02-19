@@ -46,7 +46,7 @@ public class RunFragment extends Fragment
 
         @Override
         protected void onLocationReceived(Context context, Location loc){
-        	if(!mRunManager.isTrackingRun(mRun)) return; 
+        	if(!mRunManager.isTrackingRun()) return; 
         mLastLocation = loc;
             if (isVisible())
                 updateUI();
@@ -189,7 +189,8 @@ public void onCreate(Bundle savedInstanceState)
 
     private void updateUI(){
         boolean started = mRunManager.isTrackingRun();
-        boolean trackingThisRun = mRunMananger.isTrackingRun(mRun);
+        // is tracking method is inherited by the RunManager
+        boolean trackingThisRun = mRunManager.isTrackingRun(mRun);
         
         if (mRun != null)
             mStartedTextView.setText(mRun.getStartDate().toString());

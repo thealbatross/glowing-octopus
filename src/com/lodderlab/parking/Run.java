@@ -4,9 +4,12 @@ import java.util.Date;
 
 /**
  * Created by Joshua on 1/29/14.
+ * 
+ * Defines the information a run stores
  */
 public class Run {
     private long mId;
+    // isolated type to class Run
     private Date mStartDate;
 
     public Run()

@@ -13,22 +13,42 @@ import android.util.Log;
 
 /**
  * Created by Joshua on 1/27/14.
+ * 
+ * Purpose: the RunManger is in charge of queuing runs and receiveing information from the database
+ * 
  */
+
 public class RunManager {
-    private static final String TAG = "RunManager";
-
+	// to be found
+	private static final String TAG = "RunManager";
+	// tag string for runs
     private static final String PREFS_FILE = "runs";
+    // type that stores the current id of the run
     private static final String PREF_CURRENT_RUN_ID = "RunManager.currentRunId";
-
+    // type that stores the location of the runner
     public static final String ACTION_LOCATION = "com.lodderlab.parking.ACTION_LOCATION";
-
+    // to be found
     private static RunManager sRunManager;
+    // field that stores the context method, still unsure about purpose....
     private Context mAppContext;
+    // to be found
     private LocationManager mLocationManager;
+    // to be found
     private RunDatabaseHelper mHelper;
+    // to be found
     private SharedPreferences mPrefs;
+    // type long associated with the method mCurrentRunId; "m" prefix denotes generation of both getter and setter for the assigned object, i think....
     private long mCurrentRunId;
 
+    /**
+     * 
+     * @param appContext
+     * 
+     * receives field Context, Context is inherited
+     * 
+     * to my knowledge this method sets up all the data types and the data that they receive 
+     *
+     */
     private RunManager(Context appContext){
         mAppContext = appContext;
         mLocationManager = (LocationManager)mAppContext.getSystemService(Context.LOCATION_SERVICE);
@@ -37,6 +57,11 @@ public class RunManager {
         mCurrentRunId = mPrefs.getLong(PREF_CURRENT_RUN_ID, -1);
     }
 
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Run getRun(long id){
     	Run run = null; 
     	RunCursor cursor = mHelper.queryRun(id);

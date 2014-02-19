@@ -18,16 +18,16 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) { //Used to be public, caused conflict with MainActivity.java
         super.onCreate(savedInstanceState);
         FrameLayout fl = new FrameLayout(this);
-        fl.setId(R.id.fragmentContainer);
+        fl.setId(R.id.container);
         setContentView(fl);
         
         FragmentManager manager = getSupportFragmentManager();
-        Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
+        Fragment fragment = manager.findFragmentById(R.id.container);
 
         if (fragment == null) {
             fragment = createFragment();
             manager.beginTransaction()
-                .add(R.id.fragmentContainer, fragment)
+                .add(R.id.container, fragment)
                 .commit();
         }
     }
