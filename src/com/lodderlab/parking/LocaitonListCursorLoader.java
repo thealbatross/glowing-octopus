@@ -3,10 +3,10 @@ package com.lodderlab.parking;
 import android.content.Context;
 import android.database.Cursor;
 
-public class LocationListCursorLoader extends SQLiteCursorLoader{
+public class LocaitonListCursorLoader extends SQLiteCursorLoader{
 	private long mRunId;
 	
-	public LocationListCursorLoader(Context c, long runId){
+	public LocaitonListCursorLoader(Context c, long runId){
 		super(c);
 		mRunId = runId;
 	}

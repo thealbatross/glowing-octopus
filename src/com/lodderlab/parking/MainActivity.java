@@ -9,6 +9,7 @@ public class MainActivity extends SingleFragmentActivity {
 	// this value controls whether or not the RunFragment is created and runs
     public static final String EXTRA_RUN_ID	= "com.lodder.parking.run_id";
 	
+    // something is broken what exactly I am not sure...... some things are missing must look at book
     @Override
     protected Fragment createFragment() {
         long runId = getIntent().getLongExtra(EXTRA_RUN_ID, -1);

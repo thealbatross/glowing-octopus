@@ -180,7 +180,12 @@ public class RunManager {
         }
     }
 
-    public boolean isTrackingRun(){
+    public boolean isTrackingRun(Run mRun){
         return getLocationPendingIntent(false) != null;
     }
+
+	public boolean isTrackingRun() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

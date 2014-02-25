@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.AsyncTaskLoader;
 
-public class SQLiteCursorLoader extends AsyncTaskLoader<Cursor> {
+public abstract class SQLiteCursorLoader extends AsyncTaskLoader<Cursor> {
 	private Cursor mCursor;
 	public SQLiteCursorLoader(Context context){
 		super(context);
@@ -26,7 +26,7 @@ public class SQLiteCursorLoader extends AsyncTaskLoader<Cursor> {
 	public void deliverResult(Cursor data){
 		Cursor oldCursor = mCursor;
 		mCursor = data;
-		if (isStated()){
+		if (isStarted()){
 			super.deliverResult(data);		
 		}
 		

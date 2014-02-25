@@ -4,13 +4,14 @@ package com.lodderlab.parking;
 // find the isTrackingRun method
 
 import android.app.Fragment;
+import android.app.LoaderManager;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
@@ -70,14 +71,16 @@ public void onCreate(Bundle savedInstanceState)
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
     mRunManager = RunManager.get(getActivity());
-    // check fo a Run ID as an agrument, and find the run
+    // check for a Run ID as an argument, and find the run
     Bundle args = getArguments();
     if (args != null){
+    	// sets run id data
     	long runId = args.getLong(ARG_RUN_ID, -1);
+    	// nested if
     	if (runId != -1){
-    		LoaderManager lm = new getLoaderManager();
+    		LoaderManager lm = getLoaderManager();
     		lm.initLoader(LOAD_RUN, args, new RunLoaderCallbacks());
-    		lm.initLoader(LOAD_LOCATION, args, new LocationLoaderCallbacks);
+    		lm.initLoader(LOAD_LOCATION, args, new LocationLoaderCallbacks());
     	}
     }
 }
