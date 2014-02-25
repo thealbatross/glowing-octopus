@@ -153,7 +153,7 @@ public class RunManager {
         Location lastKnow = mLocationManager.getLastKnownLocation((provider));
         if (lastKnow != null)
         {
-            //Reset the time to know
+            //Reset the time to now
             lastKnow.setTime(System.currentTimeMillis());
             broadcastLocation(lastKnow);
         }

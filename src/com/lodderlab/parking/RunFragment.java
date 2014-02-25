@@ -35,6 +35,7 @@ public class RunFragment extends Fragment
 	private Button mStartButton, mStopButton, mMapButton;
     private TextView mStartedTextView, mLatitudeTextView, mLongitudeTextView, mAltitudeTextView, mDurationTextView;
 
+    // this method is succesfully implemented
     public static RunFragment newInstances(long runId){
     	Bundle args = new Bundle();
     	args.putLong(ARG_RUN_ID, runId);
@@ -47,7 +48,7 @@ public class RunFragment extends Fragment
 
         @Override
         protected void onLocationReceived(Context context, Location loc){
-        	if(!mRunManager.isTrackingRun()) return; 
+        	if(!mRunManager.isTrackingRun(mRun)) return; 
         mLastLocation = loc;
             if (isVisible())
                 updateUI();
@@ -66,8 +67,8 @@ public class RunFragment extends Fragment
     private Location mLastLocation;
 
     @Override
-public void onCreate(Bundle savedInstanceState)
-{
+    public void onCreate(Bundle savedInstanceState)
+    {
     super.onCreate(savedInstanceState);
     setRetainInstance(true);
     mRunManager = RunManager.get(getActivity());
@@ -77,14 +78,18 @@ public void onCreate(Bundle savedInstanceState)
     	// sets run id data
     	long runId = args.getLong(ARG_RUN_ID, -1);
     	// nested if
-    	if (runId != -1){
-    		LoaderManager lm = getLoaderManager();
-    		lm.initLoader(LOAD_RUN, args, new RunLoaderCallbacks());
-    		lm.initLoader(LOAD_LOCATION, args, new LocationLoaderCallbacks());
+    		if (runId != -1)
+    		{
+    			// for now I am depreciating this setup
+    		//LoaderManager lm = getLoaderManager();
+    		// lm.initLoader(LOAD_RUN, args, new RunLoaderCallbacks());
+    		//lm.initLoader(LOAD_LOCATION, args, new LocationLoaderCallbacks());
+    			mRun = mRunManager.getRun(runId);
+    			mLastLocation = mRunManager.getLastLocationForRun(runId);
+    		}
     	}
     }
-}
-
+    // creates the UI
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
