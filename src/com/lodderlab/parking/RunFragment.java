@@ -35,7 +35,7 @@ public class RunFragment extends Fragment
 	private Button mStartButton, mStopButton, mMapButton;
     private TextView mStartedTextView, mLatitudeTextView, mLongitudeTextView, mAltitudeTextView, mDurationTextView;
 
-    // this method is succesfully implemented
+    // this method is successfully implemented
     public static RunFragment newInstances(long runId){
     	Bundle args = new Bundle();
     	args.putLong(ARG_RUN_ID, runId);
