@@ -34,13 +34,18 @@ public class RunFragment extends Fragment
     private static final int LOAD_LOCATION = 1;
 	private Button mStartButton, mStopButton, mMapButton;
     private TextView mStartedTextView, mLatitudeTextView, mLongitudeTextView, mAltitudeTextView, mDurationTextView;
-
+    
     // this method is successfully implemented
-    public static RunFragment newInstances(long runId){
+    public static RunFragment newInstance(long runId){
+    	// create Bundle object called args
     	Bundle args = new Bundle();
+    	// pass arguments to args
     	args.putLong(ARG_RUN_ID, runId);
+    	// create RunFragment object
     	RunFragment rf = new RunFragment();
+    	// pass data in the args object to the rf object 
     	rf.setArguments(args);
+    	// set the return to rf
     	return rf;
     }
     
@@ -82,7 +87,7 @@ public class RunFragment extends Fragment
     		{
     			// for now I am depreciating this setup
     		//LoaderManager lm = getLoaderManager();
-    		// lm.initLoader(LOAD_RUN, args, new RunLoaderCallbacks());
+    		//lm.initLoader(LOAD_RUN, args, new RunLoaderCallbacks());
     		//lm.initLoader(LOAD_LOCATION, args, new LocationLoaderCallbacks());
     			mRun = mRunManager.getRun(runId);
     			mLastLocation = mRunManager.getLastLocationForRun(runId);

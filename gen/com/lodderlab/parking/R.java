@@ -25,7 +25,7 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f080009;
-        public static final int container=0x7f080000;
+        public static final int fragmentContainer=0x7f080000;
         public static final int menu_item_new_run=0x7f08000a;
         public static final int run_altitudeTextView=0x7f080004;
         public static final int run_durationTextView=0x7f080005;
