@@ -10,8 +10,5 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Joshua/Downloads/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/add-ons/addon-google_apis-google-19/libs/maps.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Joshua/Downloads/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Joshua/Downloads/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/v13/android-support-v13.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Joshua/Downloads/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/v7/gridlayout/libs/android-support-v7-gridlayout.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Joshua/Downloads/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/v7/mediarouter/libs/android-support-v7-mediarouter.jar"/>
-	<classpathentry exported="true" kind="lib" path="src/com/lodderlab/parking/RunFragment.java"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

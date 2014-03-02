@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import static android.view.View.OnClickListener;
+import android.view.View.OnClickListener;
 
 /**
  * Created by Joshua on 1/27/14.
